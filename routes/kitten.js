@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const createError = require('http-errors');
+const { Op } = require('sequelize');
 const { kitten } = require('../db');
 
 router.post('/create', async ({ body }, res, next) => {
@@ -23,7 +24,9 @@ router.get('/getByName/:name', async (req, res, next) => {
   try {
     const kittens = await kitten.findAll({
       where: {
-        name,
+        name: {
+          [Op.like]: `%${name}%`,
+        },
       },
     });
     if (!kittens || kittens.length < 1) return next(createError(400, `No kitten found with name ${name}`));
@@ -39,7 +42,7 @@ router.get('/get/:id', async (req, res, next) => {
   if (!id) return next(createError(400, 'Missing id!'));
   try {
     const found = await kitten.findByPk(id);
-    if (!found)next(createError(400, `No kitten found with id ${id}`));
+    if (!found) next(createError(400, `No kitten found with id ${id}`));
     return res.send(found);
   } catch (err) {
     return next(err);
