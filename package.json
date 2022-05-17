@@ -3,15 +3,21 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "mocha ./__tests__ --exit",
+    "coverage": "nyc npm test --reporter=nyan"
   },
   "dependencies": {
+    "chai": "^4.3.6",
+    "chai-http": "^4.3.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "^1.8.0",
+    "mocha": "^10.0.0",
     "morgan": "~1.9.1",
     "mysql2": "^2.3.3",
+    "nyc": "^15.1.0",
     "sequelize": "^6.6.5",
     "sqlite3": "^5.0.8"
   },

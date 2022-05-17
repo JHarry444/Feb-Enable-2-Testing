@@ -49,9 +49,9 @@ const Kitten = sequelize.define('kitten', {
 sequelize.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
-    // sequelize.sync({
-    //   force: true,
-    // });
+    sequelize.sync({
+      force: true,
+    });
   }).catch((error) => console.error('Unable to connect to the database:', error));
 
 // Kitten.create({full_name: "Mittens", age: 12, cuteness: 8, breed: "Tabby"});
