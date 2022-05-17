@@ -1,6 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('sqlite::memory');
+const sequelize = process.env.NODE_ENV === 'test' ? new Sequelize('sqlite::memory') : new Sequelize('feb_enable_2', 'root', 'pass', {
+  host: 'localhost',
+  dialect: 'mysql',
+});
 
 // const Owner = sequelize.define('owner', {
 //     name: {
@@ -46,9 +49,9 @@ const Kitten = sequelize.define('kitten', {
 sequelize.authenticate()
   .then(() => {
     console.log('Connection has been established successfully.');
-    sequelize.sync({
-      force: true,
-    });
+    // sequelize.sync({
+    //   force: true,
+    // });
   }).catch((error) => console.error('Unable to connect to the database:', error));
 
 // Kitten.create({full_name: "Mittens", age: 12, cuteness: 8, breed: "Tabby"});
