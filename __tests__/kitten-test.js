@@ -1,7 +1,8 @@
 const { before, describe, it } = require('mocha');
 const chai = require('chai');
+
+const { expect } = chai;
 const chaiHttp = require('chai-http');
-const { expect } = require('chai');
 const server = require('../app');
 const { kitten } = require('../db');
 

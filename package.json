@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "test": "mocha ./__tests__ --exit",
-    "coverage": "nyc npm test --reporter=nyan"
+    "test": "mocha ./__tests__ --reporter=nyan --exit",
+    "coverage": "nyc npm test"
   },
   "dependencies": {
     "chai": "^4.3.6",
