@@ -1,4 +1,4 @@
-const { before, describe, it } = require('mocha');
+const { beforeEach, describe, it } = require('mocha');
 const chai = require('chai');
 
 const { expect } = chai;
@@ -9,7 +9,7 @@ const { kitten } = require('../db');
 chai.use(chaiHttp);
 
 describe('CRUD testing', () => {
-  before(async () => {
+  beforeEach(async () => {
     await kitten.sync({ force: true }); // force it to recreate the table
     await kitten.create({
       name: 'Puss',
